@@ -14,17 +14,21 @@ export function createLog(level: string, message: string, data?: any) {
     ...data,
   };
 
+  // log all messages in the browser, not in the server
+  const shouldLogAll = typeof window !== "undefined";
+
   const logMessage = `[MCP] ${message}`;
 
   if (level === "ERROR") {
+    // Always log errors
     console.error(logMessage, logEntry);
-  } else if (level === "WARN") {
+  } else if (level === "WARN" && shouldLogAll) {
     console.warn(logMessage, logEntry);
-  } else if (level === "INFO") {
+  } else if (level === "INFO" && shouldLogAll) {
     console.info(logMessage, logEntry);
-  } else if (level === "DEBUG") {
+  } else if (level === "DEBUG" && shouldLogAll) {
     console.debug(logMessage, logEntry);
-  } else {
+  } else if (shouldLogAll) {
     console.log(`[${level}] ${logMessage}`, logEntry);
   }
   return logEntry;

@@ -24,7 +24,6 @@ export async function action({ request }: { request: Request }) {
       error: result.error || null,
     });
   } catch (error) {
-    console.error("Error checking store:", error);
     return Response.json(
       {
         success: false,

@@ -60,7 +60,6 @@ export function addUIResourcesIfNeeded(
   originalUrl: URL,
   actionsMode: "default" | "prompt" | "tool",
 ) {
-  console.log("result", result);
   const content = result?.content ?? [];
   if (content?.[0]?.type !== "text") {
     return result;
